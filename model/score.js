@@ -1,16 +1,20 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const scoreSchema = new mongoose.Schema({
-    name: {
-        type: 'string',
-        required: true,
-    },
-    score: {
-        type: 'string',
-    },
-    cards: {
-        type: 'string'
-    }
+  name: {
+    type: String,
+    required: true,
+  },
+  score: {
+    type: Number,
+  },
+  cards: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 const scoreModel = new mongoose.model("High Score", scoreSchema);

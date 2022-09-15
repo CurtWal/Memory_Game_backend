@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const getScore = require('./routes/getScore');
 const postScore = require('./routes/postScore');
 const scoreModel = require('./model/score');
+const deleteScore = require('./routes/deleteScore');
 const PORT = process.env.PORT || 3003;
 const app = express();
 
@@ -40,22 +41,22 @@ app.get('/get-pokeball', (req, res) => {
     res.send(newUrl)
 })
 
-const scoreData = async (req, res) => {
-      try {
-        let score1 = new scoreModel({
-          name: "CW",
-          score: "25",
-          cards: "10",
-        });
-        await score1.save();
-    } catch (error) {
-            console.log(error);
-          }
-    }
-scoreData();
+// const scoreData = async (req, res) => {
+//       try {
+//         let score1 = new scoreModel({
+//           name: "CW",
+//           score: "25",
+//           cards: "10",
+//         });
+//         await score1.save();
+//     } catch (error) {
+//             console.log(error);
+//           }
+//     }
+// scoreData();
 
 
 app.use(getScore);
 app.use(postScore);
-
+app.use(deleteScore);
 app.listen(PORT, () => console.log(`listening on ${PORT}`))
